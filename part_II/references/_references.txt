@@ -3,6 +3,6 @@ https://www.nature.com/articles/ncomms3193.pdf
 https://github.com/CamDavidsonPilon/ipd/blob/master/ipd.py
 https://arxiv.org/pdf/1604.00896.pdf
 https://www.reddit.com/r/askscience/comments/ydcy8/can_anyone_explain_to_me_how_zero_determinant/
-
-
+https://github.com/Axelrod-Python/Axelrod
+https://golem.ph.utexas.edu/category/2012/07/zerodeterminant_strategies_in.html
 
