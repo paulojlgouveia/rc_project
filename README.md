@@ -24,8 +24,8 @@ it can be found inthe *part_I/* folder
 	1. strategies - axelrod library
 	2. population init
 	3. fitness computing
-	4. game
-	5. copying of strategies
+	4. game prisioners diellema
+	5. evolution and copying of strategies
 	
 	
 ### References
