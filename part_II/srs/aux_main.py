@@ -46,13 +46,13 @@ def human_interation_init(players):
                     "TitForTat",
                     "ForgivingTitForTat",
                     "Joss",
-                    "ZDMem2",
                     "ZDExtort2",
                     "WinStayLoseShift",
-                    "ZDGTFT2"]
+                    "ZDGTFT2",
+                    "Random"]
     print("\nplayers:")
     print_numbered_list(players_list)
-    cmd = input()
+    cmd = input("\n-> ")
     human_interation(players, int(cmd))
 
 
@@ -62,10 +62,10 @@ def init():
                axl.TitForTat(),
                axl.ForgivingTitForTat(),
                axl.Joss(),
-               axl.ZDMem2(),
                axl.ZDExtort2(),
                axl.WinStayLoseShift(),
-               axl.ZDGTFT2()]
+               axl.ZDGTFT2(),
+               axl.Random()]
 
     tours = [tournament(players, 1),
              tournament(players, 10),

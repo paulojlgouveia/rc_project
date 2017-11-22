@@ -2,31 +2,38 @@ import axelrod as axl
 import pprint
 
 
-def visualise_boxplot(results):
-    plot = axl.Plot(results)
-    p = plot.boxplot()
-    p.show()
+def visualise_boxplot(tours):
+    result_item = [item[1] for item in tours]
+    for results in result_item:
+        plot = axl.Plot(results)
+        p = plot.boxplot()
+        p.show()
+        input()
 
 
-def visualise_win_distribution(results):
-    plot = axl.Plot(results)
-    p = plot.winplot()
-    p.show()
+def visualise_win_distribution(tours):
+    result_item = [item[1] for item in tours]
+    for results in result_item:
+        plot = axl.Plot(results)
+        p = plot.winplot()
+        p.show()
+        input()
 
 
-def visualise_payoff_matrix(results):
-    plot = axl.Plot(results)
-    p = plot.payoff()
-    p.show()
+def visualise_payoff_matrix(tours):
+    result_item = [item[1] for item in tours]
+    for results in result_item:
+        plot = axl.Plot(results)
+        p = plot.payoff()
+        p.show()
+        input()
 
 
 def visualise_tournaments_game(tours):
-    result_item = [item[1] for item in tours]
-    for results in result_item:
-        visualise_boxplot(results)
-        visualise_win_distribution(results)
-        visualise_payoff_matrix(results)
-        input()
+    visualise_boxplot(tours)
+    visualise_win_distribution(tours)
+    visualise_payoff_matrix(tours)
+    input()
 
 
 def summary_results(tours):
