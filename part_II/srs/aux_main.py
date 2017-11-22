@@ -68,9 +68,8 @@ def init():
                axl.ZDGTFT2()]
 
     tours = [tournament(players, 1),
-             tournament(players, 5),
-             tournament(players, 25),
-             tournament(players, 50),
-             tournament(players, 100)]
+             tournament(players, 10),
+             tournament(players, 100),
+             tournament(players, 1000)]
 
     return players, tours
