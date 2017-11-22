@@ -1,0 +1,8 @@
+
+run:
+	python3 main.py
+
+clean:
+	find . -name \*.pyc -delete
+
+
