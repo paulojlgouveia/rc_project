@@ -18,6 +18,7 @@ it can be found inthe *part_I/* folder
 	5. joss
 	6. ZDmen2
 	6. ZDextort
+	7. WinStayLoseShift
 	
 	
 #### 2. Programing:
