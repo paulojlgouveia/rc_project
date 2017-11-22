@@ -4,11 +4,13 @@ https://www.nature.com/articles/ncomms3193.pdf
 http://www.pnas.org/content/109/26/10409.full.pdf
 https://arxiv.org/pdf/1604.00896.pdf
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.145.131&rep=rep1&type=pdf
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.145.131&rep=rep1&type=pdf
 
 
 -> web <-
 http://www.prisoners-dilemma.com/strategies.html
 https://www.reddit.com/r/askscience/comments/ydcy8/can_anyone_explain_to_me_how_zero_determinant/
+http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0134128
 
 
 -> libs <-
