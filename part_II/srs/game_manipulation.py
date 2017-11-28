@@ -77,7 +77,7 @@ def human_interation(players, n):
 
 
 def evolution():
-    players = [s() for s in axl.cheating_strategies] + [axl.Cooperator(),
+    '''players = [s() for s in axl.cheating_strategies] + [axl.Cooperator(),
                                                         axl.Defector(),
                                                         axl.TitForTat(),
                                                         axl.ForgivingTitForTat(),
@@ -86,7 +86,29 @@ def evolution():
                                                         axl.ZDExtort2(),
                                                         axl.ZDGTFT2(),
                                                         axl.Random()]
-    for x in range(0, len(players)):
+
+
+    players = [s() for s in axl.all_strategies]
+    new = players[:]
+    deleted = [axl.Adaptive().__class__,
+               axl.Resurrection().__class__,
+               axl.Geller().__class__,
+               axl.MetaHunter().__class__]
+    for x in range(0, len(new)):
+        if new[x].__class__ in deleted:
+            del players[x]'''
+
+    players = [axl.Cooperator(),
+                axl.Defector(),
+                axl.TitForTat(),
+                axl.ForgivingTitForTat(),
+                axl.Joss(),
+                axl.WinStayLoseShift(),
+                axl.ZDExtort2(),
+                axl.ZDGTFT2(),
+                axl.Random()]
+
+    for x in range(0, len(players)*100):
         player1 = random.randint(0, len(players) - 1)
         player2 = random.randint(0, len(players) - 1)
         player_match = [players[player1], players[player2]]
