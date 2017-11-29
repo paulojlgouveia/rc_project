@@ -14,11 +14,11 @@ from lists import clear_cmds, quit_cmds, exit_cmds
 
 
 execution_modes = {
-	"0": [print_strategies,  "View strategies"],
-	"1": [print_players,     "View players"],
-	"2": [play_tournament,   "Regular tournament <turns> <repetitions>"],
-	"3": [play_evolution,    "Evolution test\t <turns> <repetitions> <players-per-strategy> <iteratirons>"],
-	"4": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
+	"1": [print_strategies,  "View strategies"],
+	"2": [print_players,     "View players"],
+	"3": [play_tournament,   "Tournament\t <noise> <turns> <repetitions>"],
+	"4": [play_evolution,    "Evolution\t\t <noise> <turns> <repetitions> <players-per-strategy> <iteratirons>"],
+	"5": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
 }
 
 
@@ -47,7 +47,9 @@ def init_tournaments():
 def main():
 	
 	if not os.path.exists("../img/"):
-		os.makedirs("../img/")
+		os.makedirs("../img/matrix/")
+		os.makedirs("../img/payoff/")
+		os.makedirs("../img/wins/")
 	
 	os.system("tput reset")
 

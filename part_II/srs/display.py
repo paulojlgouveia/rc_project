@@ -2,6 +2,8 @@
 import axelrod as axl
 import matplotlib.pyplot as plt
 
+from plot import win_distribution, payoff_distribution, payoff_matrix
+
 class Emphasis:
 	PURPLE = '\033[95m'
 	BLUE = '\033[94m'
@@ -54,56 +56,19 @@ def print_players(players, tournaments, args = None):
 
 
 def view_win_distribution(results, args = None):
-	plot = axl.Plot(results)
-	
-	_, ax = plt.subplots()
-	title = ax.set_title('Wins')
-	xlabel = ax.set_xlabel('Strategies')
-	
-	img = plot.winplot(ax=ax)
-	
-	if args is not None:
-		name = "../img/wins"
-		for arg in args:
-			name += "-"+str(arg)
-		name += ".png"
-		img.savefig(name)
-	
+	_, img = win_distribution(results, args)
 	img.show()
 	
 	
 
 def view_payoff_distribution(results, args = None):
-	plot = axl.Plot(results)
-	
-	_, ax = plt.subplots()
-	title = ax.set_title('Payoff')
-	xlabel = ax.set_xlabel('Strategies')
-	
-	img = plot.boxplot(ax=ax)
-	
-	if args is not None:
-		name = "../img/payoff"
-		for arg in args:
-			name += "-"+str(arg)
-		name += ".png"
-		img.savefig(name)
-	
+	_, img = payoff_distribution(results, args)
 	img.show()
 
 
 
 def view_payoff_matrix(results, args = None):
-	plot = axl.Plot(results)
-	img = plot.payoff()
-	
-	if args is not None:
-		name = "../img/matrix"
-		for arg in args:
-			name += "-"+str(arg)
-		name += ".png"
-		img.savefig(name)
-	
+	_, img = payoff_matrix(results, args)
 	img.show()
 
 
@@ -113,6 +78,16 @@ def view_all_results(results, args = None):
 	view_win_distribution(results, args)
 	view_payoff_matrix(results, args)
 
+
+
+def save_results(results, args = None):
+	name1, img1 = win_distribution(results, args)
+	name2, img2 = payoff_distribution(results, args)
+	name3, img3 = payoff_matrix(results, args)
+	
+	img1.savefig(name1)
+	img2.savefig(name2)
+	img3.savefig(name3)
 
 
 
