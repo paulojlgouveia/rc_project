@@ -1,53 +1,87 @@
-import sys
 
-from aux_main import *
+import os, sys
+# check if running under python3
+if sys.version_info < (3, 0):
+	sys.stdout.write("DENIED: requires Python 3.x\n")
+	sys.exit(1)
+else:
+	import axelrod as axl
+
+from play import play_tournament, play_evolution, human_interaction
+from display import print_strategies, print_players
+from display import Emphasis, print_numbered_list
+from lists import clear_cmds, quit_cmds, exit_cmds
+
+
+execution_modes = {
+	"0": [print_strategies,  "View strategies"],
+	"1": [print_players,     "View players"],
+	"2": [play_tournament,   "Regular tournament"],
+	"3": [play_evolution,    "Evolution test"],
+	"4": [human_interaction, "Human interation"]
+}
+
+
+def init_players():
+	#players = [s() for s in axl.demo_strategies]
+	#players = [s() for s in strategies]
+	
+	players = [axl.Cooperator(),
+			axl.Defector(),
+			axl.TitForTat(),
+			axl.ForgivingTitForTat(),
+			axl.Joss(),
+			axl.WinStayLoseShift(),
+			axl.ZDExtort2(),
+			axl.ZDGTFT2(),
+			axl.Random()]
+	
+	return players
+
+
+def init_tournaments():
+	tournaments = []
+
+	return tournaments
+
 
 
 def main():
-    # check if running under python3
-    if sys.version_info < (3, 0):
-        sys.stdout.write("DENIED: requires Python 3.x\n")
-        sys.exit(1)
+	os.system("tput reset")
 
-    players, tours = init()
-
-    # interactive mode (no flags)
-    main_modes = ["View results",
-                  "Summarise tournament results",
-                  "Access the interactions",
-                  "Human interation",
-                  "Evolution"]
-
-    while True:
-        print("\nexecution mode:")
-        print_numbered_list(main_modes)
-        cmd = input("\n-> ")
-        if cmd == "0":
-            visualise_mode_init(tours)
-
-        elif cmd == "1":
-            summary_results(tours)
-
-        elif cmd == "2":
-            accessing_mode_init(tours)
-
-        elif cmd == "3":
-            human_interation_init(players)
-
-        elif cmd == "4":
-            evolution()
-
-        elif cmd == "q" or cmd == "quit":
-            break
-
-        elif cmd == "e" or cmd == "exit":
-            sys.exit(0)
-
-        else:
-            continue
-
-    print("queue the XP shutdown theme.\n")
+	players = init_players()
+	tournaments = init_tournaments()
+	
+	
+	while True:
+		print("\nExecution mode:")
+		print_numbered_list(execution_modes)
+		
+		try:
+			in_cmd = input("\n-> ").split()
+			cmd = in_cmd[0]
+			args = in_cmd[1:]
+			results = execution_modes[cmd][0](players, tournaments, args)
+			
+		#except IndexError as e:
+			#continue
+			
+		except KeyError as e:
+			if cmd in quit_cmds:
+				break
+				
+			elif cmd in exit_cmds:
+				sys.exit(0)
+				
+			elif cmd in clear_cmds:
+				os.system("tput reset")
+				
+			else:
+				print("invalid option.")
+				continue
+	
 
 
 if __name__ == '__main__':
-    main()
+	main()
+

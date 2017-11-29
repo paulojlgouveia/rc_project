@@ -1,3 +1,4 @@
+
 from game_manipulation import *
 
 
@@ -22,16 +23,16 @@ def visualise_mode_init(tours):
     cmd = input("\n-> ")
     if cmd == "0":
         visualise_boxplot(tours)
-
+		
     elif cmd == "1":
         visualise_win_distribution(tours)
-
+		
     elif cmd == "2":
         visualise_payoff_matrix(tours)
-
+		
     elif cmd == "q" or cmd == "b":
         return
-
+		
     else:
         visualise_tournaments_game(tours)
 
