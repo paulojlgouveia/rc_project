@@ -16,37 +16,39 @@ from lists import clear_cmds, quit_cmds, exit_cmds
 execution_modes = {
 	"0": [print_strategies,  "View strategies"],
 	"1": [print_players,     "View players"],
-	"2": [play_tournament,   "Regular tournament"],
-	"3": [play_evolution,    "Evolution test"],
-	"4": [human_interaction, "Human interation"]
+	"2": [play_tournament,   "Regular tournament <turns> <repetitions>"],
+	"3": [play_evolution,    "Evolution test\t <turns> <repetitions> <players-per-strategy> <iteratirons>"],
+	"4": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
 }
 
 
 def init_players():
 	#players = [s() for s in axl.demo_strategies]
-	#players = [s() for s in strategies]
-	
-	players = [axl.Cooperator(),
-			axl.Defector(),
-			axl.TitForTat(),
-			axl.ForgivingTitForTat(),
-			axl.Joss(),
-			axl.WinStayLoseShift(),
-			axl.ZDExtort2(),
-			axl.ZDGTFT2(),
-			axl.Random()]
+	players = [
+		axl.Cooperator(),
+		axl.Defector(),
+		axl.TitForTat(),
+		axl.ForgivingTitForTat(),
+		axl.Joss(),
+		axl.WinStayLoseShift(),
+		axl.ZDExtort2(),
+		axl.ZDGTFT2(),
+		axl.Random()
+	]
 	
 	return players
 
 
 def init_tournaments():
 	tournaments = []
-
 	return tournaments
 
 
-
 def main():
+	
+	if not os.path.exists("../img/"):
+		os.makedirs("../img/")
+	
 	os.system("tput reset")
 
 	players = init_players()

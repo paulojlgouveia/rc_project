@@ -53,17 +53,6 @@ def print_players(players, tournaments, args = None):
 
 
 
-def view_payoff_distribution(results, args = None):
-	plot = axl.Plot(results)
-	
-	_, ax = plt.subplots()
-	title = ax.set_title('Payoff')
-	xlabel = ax.set_xlabel('Strategies')
-	
-	img = plot.boxplot(ax=ax)
-	img.show()
-
-
 def view_win_distribution(results, args = None):
 	plot = axl.Plot(results)
 	
@@ -72,19 +61,58 @@ def view_win_distribution(results, args = None):
 	xlabel = ax.set_xlabel('Strategies')
 	
 	img = plot.winplot(ax=ax)
+	
+	if args is not None:
+		name = "../img/wins"
+		for arg in args:
+			name += "-"+str(arg)
+		name += ".png"
+		img.savefig(name)
+	
 	img.show()
+	
+	
+
+def view_payoff_distribution(results, args = None):
+	plot = axl.Plot(results)
+	
+	_, ax = plt.subplots()
+	title = ax.set_title('Payoff')
+	xlabel = ax.set_xlabel('Strategies')
+	
+	img = plot.boxplot(ax=ax)
+	
+	if args is not None:
+		name = "../img/payoff"
+		for arg in args:
+			name += "-"+str(arg)
+		name += ".png"
+		img.savefig(name)
+	
+	img.show()
+
 
 
 def view_payoff_matrix(results, args = None):
 	plot = axl.Plot(results)
 	img = plot.payoff()
+	
+	if args is not None:
+		name = "../img/matrix"
+		for arg in args:
+			name += "-"+str(arg)
+		name += ".png"
+		img.savefig(name)
+	
 	img.show()
 
 
+
 def view_all_results(results, args = None):
-	view_payoff_distribution(results)
-	view_win_distribution(results)
-	view_payoff_matrix(results)
+	view_payoff_distribution(results, args)
+	view_win_distribution(results, args)
+	view_payoff_matrix(results, args)
+
 
 
 
