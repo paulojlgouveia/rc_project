@@ -7,7 +7,10 @@ it can be found inthe *part_I/* folder
 	
 	
 ## Part II - the sequelning
-	
+### Report
+https://docs.google.com/document/d/11OrBlWLXHzRKGNJL1eQM3tr_OA8VRkMxxlg98u68FZE/
+
+
 ### ToDo list
 #### 1. Strategies:
 	
