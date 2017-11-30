@@ -13,13 +13,40 @@ from display import Emphasis, print_numbered_list
 from lists import clear_cmds, quit_cmds, exit_cmds
 
 
-execution_modes = {
-	"1": [print_strategies,  "View strategies"],
-	"2": [print_players,     "View players"],
-	"3": [play_tournament,   "Tournament\t <noise> <turns> <repetitions>"],
-	"4": [play_evolution,    "Evolution\t\t <noise> <turns> <repetitions> <players-per-strategy> <iteratirons>"],
-	"5": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
-}
+
+def add_strategy(players, tournaments, args = []):
+	print(Emphasis.BOLD + "Available strategies: " + Emphasis.END)
+	print_numbered_list([str(x()) for x in axl.all_strategies])
+
+	try:
+		index = int(input("\n-> "))
+		
+		new = axl.all_strategies[index]()
+		
+		if new not in players:
+			players.append(new)
+			
+		else:
+			print("Strategy already in the list.")
+		
+	except ValueError as e:
+		print("invalid index.")
+		
+	return players
+
+
+def remove_strategy(players, tournaments, args = []):
+	print(Emphasis.BOLD + "Strategies: " + Emphasis.END)
+	print_numbered_list([str(x) for x in players])
+	try:
+		index = int(input("\n-> "))
+		del(players[index])
+		
+	except ValueError as e:
+		print("invalid index.")
+	
+	return players
+
 
 
 def init_players():
@@ -43,6 +70,19 @@ def init_players():
 def init_tournaments():
 	tournaments = []
 	return tournaments
+
+
+
+
+execution_modes = {
+	"1": [print_strategies,  "View strategies"],
+	"2": [add_strategy,      "Add a strategy"],
+	"3": [remove_strategy,   "Remove a strategy"],
+	"4": [play_tournament,   "Tournament\t <noise> <turns> <repetitions>"],
+	"5": [play_evolution,    "Evolution\t\t <noise> <turns> <repetitions> <players-per-strategy> <iteratirons>"],
+	"6": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
+}
+
 
 
 def main():

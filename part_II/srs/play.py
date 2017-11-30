@@ -122,19 +122,23 @@ def play_evolution(players, tournaments, args = None):
 		player1 = random.randrange(0, len(population))
 		player2 = random.randrange(0, len(population))
 		
-		# compare payoffs and copy strategies
-		if scores[player1] < scores[player2]:
-			print(i, ':', Emphasis.ITALIC + str(population[player1]) \
-									+ " => " + str(population[player2]) + Emphasis.END)
-			population[player1] = copy.deepcopy(population[player2])
-			
-		elif scores[player1] > scores[player2]:
-			print(i, ':', Emphasis.ITALIC + str(population[player2]) \
-									+ " => " + str(population[player1]) + Emphasis.END)
-			population[player2] = copy.deepcopy(population[player1])
-			
+		if population[player1] == population[player2]:
+			# compare payoffs and copy strategies
+			if scores[player1] < scores[player2]:
+				print(i, ':', Emphasis.ITALIC + str(population[player1]) \
+										+ " => " + str(population[player2]) + Emphasis.END)
+				population[player1] = copy.deepcopy(population[player2])
+				
+			elif scores[player1] > scores[player2]:
+				print(i, ':', Emphasis.ITALIC + str(population[player2]) \
+										+ " => " + str(population[player1]) + Emphasis.END)
+				population[player2] = copy.deepcopy(population[player1])
+				
+			else:
+				print(i, ':', Emphasis.ITALIC + "Did not copy: same fitness." + Emphasis.END)
+				
 		else:
-			print(i, ':', Emphasis.ITALIC + "did not copy." + Emphasis.END)
+			print(i, ':', Emphasis.ITALIC + "Did not copy: same strategy." + Emphasis.END)
 		
 	
 	print(Emphasis.BOLD + "\nCount of strategies at the end:" + Emphasis.END)

@@ -22,11 +22,11 @@ class Emphasis:
 def print_numbered_list(bag):	
 	if isinstance(bag, dict):
 		for k, v in sorted(bag.items()):
-			print("  " + str(k).rjust(2) + "  " + v[1])
+			print(" " + str(k).rjust(3) + "  " + v[1])
 		
 	elif isinstance(bag, list):
 		for t in range(len(bag)):
-			print("  " + str(t).rjust(2) + "  " + bag[t])
+			print(" " + str(t).rjust(3) + "  " + bag[t])
 
 
 def get_unic_strs(bag):
@@ -42,13 +42,13 @@ def get_unic_strs(bag):
 
 
 def print_strategies(players, tournaments, args = None):
-	print(Emphasis.ITALIC + Emphasis.UNDERLINE + "Strategies:" + Emphasis.END)
+	print(Emphasis.BOLD + "Strategies: " + Emphasis.END)
 	for s in get_unic_strs(players):
 		print("    " + s)
 
 
 def print_players(players, tournaments, args = None):
-	print(Emphasis.ITALIC + Emphasis.UNDERLINE + "Players:" + Emphasis.END)
+	print(Emphasis.BOLD + "Players: " + Emphasis.END)
 	for p in players:
 		print("    " + str(p))
 
