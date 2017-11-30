@@ -10,6 +10,9 @@ it can be found inthe *part_I/* folder
 ### Report
 https://docs.google.com/document/d/11OrBlWLXHzRKGNJL1eQM3tr_OA8VRkMxxlg98u68FZE/
 
+### Presentation
+https://docs.google.com/spreadsheets/d/17jUntlX0kOKTrIZrp5Iu09jj_htrOnowXiJNOeIcR1s/
+
 
 ### ToDo list
 #### 1. Strategies:
