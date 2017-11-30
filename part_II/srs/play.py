@@ -1,10 +1,10 @@
 
-import os, sys, random, copy, collections
+import os, sys, math, random, copy, collections
 import axelrod as axl
 import matplotlib.pyplot as plt
 
 from display import *
-from lists import clear_cmds, quit_cmds, exit_cmds
+from lists import *
 
 
 results_view = {
@@ -119,20 +119,22 @@ def play_evolution(players, tournaments, args = None):
 		scores = results.normalised_scores
 		
 		# pick two random players
-		player1 = random.randrange(0, len(population))
-		player2 = random.randrange(0, len(population))
+		p1 = random.randrange(0, len(population))
+		p2 = random.randrange(0, len(population))
 		
-		if population[player1] == population[player2]:
+		if population[p1] != population[p2]:
+			
+			f_p1 = scores[p1][0]
+			f_p2 = scores[p2][0]
+			
 			# compare payoffs and copy strategies
-			if scores[player1] < scores[player2]:
-				print(i, ':', Emphasis.ITALIC + str(population[player1]) \
-										+ " => " + str(population[player2]) + Emphasis.END)
-				population[player1] = copy.deepcopy(population[player2])
+			if f_p1 < f_p2:
+				print(i, ':', Emphasis.ITALIC + str(population[p1]) + " => " + str(population[p2]) + Emphasis.END)
+				population[p1] = copy.deepcopy(population[p2])
 				
-			elif scores[player1] > scores[player2]:
-				print(i, ':', Emphasis.ITALIC + str(population[player2]) \
-										+ " => " + str(population[player1]) + Emphasis.END)
-				population[player2] = copy.deepcopy(population[player1])
+			elif f_p1 > f_p2:
+				print(i, ':', Emphasis.ITALIC + str(population[p2]) + " => " + str(population[p1]) + Emphasis.END)
+				population[p2] = copy.deepcopy(population[p1])
 				
 			else:
 				print(i, ':', Emphasis.ITALIC + "Did not copy: same fitness." + Emphasis.END)
@@ -140,6 +142,7 @@ def play_evolution(players, tournaments, args = None):
 		else:
 			print(i, ':', Emphasis.ITALIC + "Did not copy: same strategy." + Emphasis.END)
 		
+		sys.exit(42)
 	
 	print(Emphasis.BOLD + "\nCount of strategies at the end:" + Emphasis.END)
 	count = collections.Counter([str(x) for x in population])
@@ -147,6 +150,89 @@ def play_evolution(players, tournaments, args = None):
 		print(str(v).rjust(3), k)
 
 	results_view_loop(results, ["_e_", 'n'+str(op_n), 't'+str(op_t), 'r'+str(op_r), 'p'+str(op_p), 'i'+str(op_i)])
+
+
+
+
+def play_evolution_2(players, tournaments, args = None):
+	
+	if args == None or len(args) == 0:
+		op_n = 0.0
+		op_t = 10
+		op_r = 2
+		op_p = 10
+		op_i = len(players)*op_p
+	else:
+		op_n = float(args[0])
+		op_t = int(args[1])
+		op_r = int(args[2])
+		op_p = int(args[3])
+		op_i = int(args[4])
+	
+	title = Emphasis.BOLD + "Evolution: " + Emphasis.END
+	terms = Emphasis.ITALIC + "\n  turns = " + str(op_t) \
+							+ "\n  repetitions = " + str(op_r) \
+							+ "\n  players per strategy = " + str(op_p) \
+							+ "\n  total players = " + str(len(players)*op_p) \
+							+ "\n  interactions = " + str(op_i) \
+							+ "\n  noise = " + str(op_n) + Emphasis.END + "\n"
+	print(title + terms)
+	
+	# create a population
+	population = []
+	for strategy in players:
+		print(Emphasis.ITALIC  + "copying " + str(strategy) + Emphasis.END)
+		for i in range(0, op_p):
+			population.append(copy.deepcopy(strategy))
+	
+	print()
+	scores = []
+	
+	
+	# play an arbitrary number of tournaments
+	for i in range(0, op_i):
+		
+		# play a tournament
+		tournament = axl.Tournament(population, turns=op_t, repetitions=op_r, noise=op_n)
+		results = tournament.play(keep_interactions=True, processes=0)
+		scores = results.normalised_scores
+		
+		p1 = random.randrange(0, len(population))
+		
+		if random.random() < 1/len(population):
+			new_strategy = players[random.randrange(0, len(players))]
+			print(i, ':', Emphasis.ITALIC + str(population[p1]) + " => " + str(new_strategy) + Emphasis.END)
+			population[p1] = copy.deepcopy(new_strategy)
+			
+		else:
+			p2 = random.randrange(0, len(population))
+			
+			if population[p1] != population[p2]:
+				f_p1 = scores[p1][0]
+				f_p2 = scores[p2][0]
+				
+				beta = 1
+				prob = 1 / (1 + math.exp(-beta * (f_p2 - f_p1)))
+				
+				if random.random() < prob:
+					print(i, ':', Emphasis.ITALIC + str(population[p1]) + " => " + str(population[p2]) + Emphasis.END)
+					population[p1] = copy.deepcopy(population[p2])
+					
+				else:
+					print(i, ':', Emphasis.ITALIC + "Did not copy: missed probability check." + Emphasis.END)
+				
+			else:
+				print(i, ':', Emphasis.ITALIC + "Did not copy: same strategy." + Emphasis.END)
+		
+	
+	print(Emphasis.BOLD + "\nCount of strategies at the end:" + Emphasis.END)
+	count = collections.Counter([str(x) for x in population])
+	for k,v in count.items():
+		print(str(v).rjust(3), k)
+
+	results_view_loop(results, ["_ev2_", 'n'+str(op_n), 't'+str(op_t), 'r'+str(op_r), 'p'+str(op_p), 'i'+str(op_i)])
+
+
 
 
 
@@ -159,7 +245,7 @@ def human_interaction(players, tournaments, args = None):
 	else:
 		op_t = int(args[0])
 		op_r = int(args[1])
-		name = args[2]
+		op_name = args[2]
 	
 	title = Emphasis.BOLD + "Interactive play: " + Emphasis.END
 	terms = Emphasis.ITALIC + "\n  turns = " + str(op_t) \
@@ -176,4 +262,5 @@ def human_interaction(players, tournaments, args = None):
 	tournament = axl.Tournament(player_including_me, turns=op_t, repetitions=op_r)
 	results = tournament.play(keep_interactions=True)
 
+	results_view_loop(results, ["_h_", 't'+str(op_t), 'r'+str(op_name), 'n'+str(op_name)])
 

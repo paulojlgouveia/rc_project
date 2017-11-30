@@ -2,7 +2,7 @@
 import axelrod as axl
 import matplotlib.pyplot as plt
 
-from plot import win_distribution, payoff_distribution, payoff_matrix
+from plot import *
 
 class Emphasis:
 	PURPLE = '\033[95m'

@@ -7,10 +7,9 @@ if sys.version_info < (3, 0):
 else:
 	import axelrod as axl
 
-from play import play_tournament, play_evolution, human_interaction
-from display import print_strategies, print_players
-from display import Emphasis, print_numbered_list
-from lists import clear_cmds, quit_cmds, exit_cmds
+from play import *
+from display import *
+from lists import *
 
 
 
@@ -80,7 +79,8 @@ execution_modes = {
 	"3": [remove_strategy,   "Remove a strategy"],
 	"4": [play_tournament,   "Tournament\t <noise> <turns> <repetitions>"],
 	"5": [play_evolution,    "Evolution\t\t <noise> <turns> <repetitions> <players-per-strategy> <iteratirons>"],
-	"6": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
+	"6": [play_evolution_2,  "Evolution_v2\t <noise> <turns> <repetitions> <players-per-strategy> <iteratirons>"],
+	"7": [human_interaction, "Human interation\t <turns> <repetitions> <name>"]
 }
 
 
