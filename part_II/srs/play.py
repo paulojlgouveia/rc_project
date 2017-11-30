@@ -71,7 +71,7 @@ def play_tournament(players, tournaments, args = []):
 	tournament = axl.Tournament(players, turns=op_t, repetitions=op_r, noise=op_n)
 	results = tournament.play(keep_interactions=True, processes=0)
 	
-	results_view_loop(results, ['n'+str(op_n), 't'+str(op_t), 'r'+str(op_r)])
+	results_view_loop(results, ["_t_", 'n'+str(op_n), 't'+str(op_t), 'r'+str(op_r)])
 
 
 
@@ -146,7 +146,7 @@ def play_evolution(players, tournaments, args = None):
 	for k,v in count.items():
 		print(str(v).rjust(3), k)
 
-	results_view_loop(results, ['n'+str(op_n), 't'+str(op_t), 'r'+str(op_r), 'p'+str(op_p), 'i'+str(op_i)])
+	results_view_loop(results, ["_e_", 'n'+str(op_n), 't'+str(op_t), 'r'+str(op_r), 'p'+str(op_p), 'i'+str(op_i)])
 
 
 
