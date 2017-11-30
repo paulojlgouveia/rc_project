@@ -13,10 +13,10 @@ exit = "e"
 #iterations_list = [10**x for x in range(0, 2)]
 
 noise_list = [0.0, 0.1, 0.3, 0.6, 0.9]
-turns_list = [10**x for x in range(0, 7)]
-repetitions_list = [10**x for x in range(0, 7)]
+turns_list = [10**x for x in range(0, 6)]
+repetitions_list = [10**x for x in range(0, 6)]
 players_list = range(1, 11)
-iterations_list = [10**x for x in range(0, 5)]
+iterations_list = [10**x for x in range(0, 6)]
 
 
 ########### tournaments ###########
