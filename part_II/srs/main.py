@@ -28,6 +28,7 @@ def init_players():
 		axl.Cooperator(),
 		axl.Defector(),
 		axl.TitForTat(),
+		axl.GTFT(),
 		axl.ForgivingTitForTat(),
 		axl.Joss(),
 		axl.WinStayLoseShift(),
