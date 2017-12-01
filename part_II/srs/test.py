@@ -19,25 +19,16 @@ players_list = range(1, 11)
 iterations_list = [10**x for x in range(0, 6)]
 
 
-########### tournaments ###########
-
-for noise in noise_list:
-	for turns in turns_list:
-		for repetitions in repetitions_list:
-			
-			cmd = str(tournament) + " " + str(noise) + " " + str(turns) + " " + str(repetitions)
-			
-			print(cmd)
-			print(save)
-			print(back)
-
+def my_print(cmd):
+	print(cmd)
+	#print(cmd, file=open('test_inputs.txt','a'))
 
 
 ########### evolution ###########
 
-for noise in noise_list:
+for repetitions in repetitions_list:
 	for turns in turns_list:
-		for repetitions in repetitions_list:
+		for noise in noise_list:
 			for players in players_list:
 				for iterations in iterations_list:
 					
@@ -45,17 +36,16 @@ for noise in noise_list:
 						+ " " + str(turns) + " " + str(repetitions) \
 						+ " " + str(players) + " " + str(iterations)
 					
-					print(cmd)
-					print(save)
-					print(back)
-
+					my_print(cmd)
+					my_print(save)
+					my_print(back)
 
 
 ########### evolution 2 ###########
 
-for noise in noise_list:
+for repetitions in repetitions_list:
 	for turns in turns_list:
-		for repetitions in repetitions_list:
+		for noise in noise_list:
 			for players in players_list:
 				for iterations in iterations_list:
 					
@@ -63,11 +53,23 @@ for noise in noise_list:
 						+ " " + str(turns) + " " + str(repetitions) \
 						+ " " + str(players) + " " + str(iterations)
 					
-					print(cmd)
-					print(save)
-					print(back)
+					my_print(cmd)
+					my_print(save)
+					my_print(back)
 
 
+########### tournaments ###########
 
-print(exit)
+for repetitions in repetitions_list:
+	for turns in turns_list:
+		for noise in noise_list:
+			
+			cmd = str(tournament) + " " + str(noise) + " " + str(turns) + " " + str(repetitions)
+			
+			my_print(cmd)
+			my_print(save)
+			my_print(back)
+
+
+my_print(exit)
 
