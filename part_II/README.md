@@ -7,8 +7,10 @@ Group 12: <br>
 	75694	Daniel Machado de Castro Figueira <br>
 	79758	Ana Luísa Martins Santo
 
+	
 ## Report
 The pdf with the project report can be found in the report/ folder.
+
 
 ## Usage
 	cd src/
@@ -19,4 +21,7 @@ or
 	make run
 	
 then follow the shell.
-<br>
+
+
+## Results
+http://web.ist.utl.pt/ist175657
