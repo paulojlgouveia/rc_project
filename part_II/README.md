@@ -13,6 +13,10 @@ The pdf with the project report can be found in the report/ folder.
 ## Usage
 	cd src/
 	python3 main.py
+	
 or
+
 	make run
-then follow the shell
+	
+then follow the shell.
+<br>
