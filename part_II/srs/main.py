@@ -48,19 +48,18 @@ def remove_strategy(players, tournaments, args = []):
 
 
 
-def init_players():
-	#players = [s() for s in axl.demo_strategies]
+def init_players():	
 	players = [
-		axl.Cooperator(),
-		axl.Defector(),
+		#axl.Cooperator(),
+		#axl.Defector(),
+		#axl.Random(),
+		#axl.WinStayLoseShift(),
 		axl.TitForTat(),
-		axl.GTFT(),
-		axl.ForgivingTitForTat(),
-		axl.Joss(),
-		axl.WinStayLoseShift(),
-		axl.ZDExtort2(),
-		axl.ZDGTFT2(),
-		axl.Random()
+		#axl.GTFT(),
+		#axl.ZDExtortion(),
+		#axl.ZDExtort2(),
+		#axl.ZDGTFT2(),
+		axl.ZDSet2(),
 	]
 	
 	return players

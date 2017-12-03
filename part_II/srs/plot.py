@@ -17,7 +17,7 @@ def win_distribution(results, args = None):
 		for arg in args:
 			name += "-"+str(arg)
 		name += ".png"
-		img.savefig(name)
+		#img.savefig(name)
 	
 	return name, img
 	
@@ -37,7 +37,7 @@ def payoff_distribution(results, args = None):
 		for arg in args:
 			name += "-"+str(arg)
 		name += ".png"
-		img.savefig(name)
+		#img.savefig(name)
 	
 	return name, img
 
@@ -52,7 +52,7 @@ def payoff_matrix(results, args = None):
 		for arg in args:
 			name += "-"+str(arg)
 		name += ".png"
-		img.savefig(name)
+		#img.savefig(name)
 	
 	return name, img
 

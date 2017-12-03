@@ -52,8 +52,8 @@ def results_view_loop(results, terms):
 def play_tournament(players, tournaments, args = []):
 	if args == None or len(args) == 0:
 		op_n = 0.0
-		op_t = 10
-		op_r = 1000
+		op_t = 200
+		op_r = 2
 	else:
 		op_n = float(args[0])
 		op_t = int(args[1])
@@ -142,8 +142,7 @@ def play_evolution(players, tournaments, args = None):
 		else:
 			print(i, ':', Emphasis.ITALIC + "Did not copy: same strategy." + Emphasis.END)
 		
-		sys.exit(42)
-	
+		
 	print(Emphasis.BOLD + "\nCount of strategies at the end:" + Emphasis.END)
 	count = collections.Counter([str(x) for x in population])
 	for k,v in count.items():
@@ -158,7 +157,7 @@ def play_evolution_2(players, tournaments, args = None):
 	
 	if args == None or len(args) == 0:
 		op_n = 0.0
-		op_t = 10
+		op_t = 100
 		op_r = 2
 		op_p = 10
 		op_i = len(players)*op_p
@@ -169,7 +168,7 @@ def play_evolution_2(players, tournaments, args = None):
 		op_p = int(args[3])
 		op_i = int(args[4])
 	
-	title = Emphasis.BOLD + "Evolution: " + Emphasis.END
+	title = Emphasis.BOLD + "Evolution v2: " + Emphasis.END
 	terms = Emphasis.ITALIC + "\n  turns = " + str(op_t) \
 							+ "\n  repetitions = " + str(op_r) \
 							+ "\n  players per strategy = " + str(op_p) \
@@ -196,6 +195,11 @@ def play_evolution_2(players, tournaments, args = None):
 		tournament = axl.Tournament(population, turns=op_t, repetitions=op_r, noise=op_n)
 		results = tournament.play(keep_interactions=True, processes=0)
 		scores = results.normalised_scores
+		
+		
+		if i % 100 == 0:
+			save_results(results, ["_ev2_", 'n'+str(op_n), 't'+str(op_t), 'r'+str(op_r), 'p'+str(op_p), 'i'+str(i)])
+		
 		
 		p1 = random.randrange(0, len(population))
 		
